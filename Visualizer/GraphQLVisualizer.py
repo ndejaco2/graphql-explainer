@@ -5,14 +5,14 @@ class GraphQLVisualizer:
 
         parsingStep = input.getParsingStep()
         validationStep = input.getValidationStep()
-        executionStep = input.getExecutionStep()
+        resolverExecution = input.getResolverExecution()
 
         df = [dict(Task="Parsing", Start=str(parsingStep.getStartOffset()),
                    Finish=str(parsingStep.getDuration() + parsingStep.getStartOffset()), Resource='Parsing'),
               dict(Task="Validation", Start=str(validationStep.getStartOffset()),
                    Finish=str(validationStep.getDuration() + parsingStep.getStartOffset()), Resource='Validation')]
 
-        resolvers = [executionStep.getResolverTree()]
+        resolvers = [resolverExecution.getResolverTree()]
         while len(resolvers) > 0:
             resolver = resolvers.pop()
             resolverName = resolver.getUniqueResolverName() + ' Resolver'

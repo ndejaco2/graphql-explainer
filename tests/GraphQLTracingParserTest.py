@@ -1,6 +1,7 @@
 import json
 from unittest import TestCase
 
+from GraphQLExplainer import GraphQLExplainer
 from Parser.GraphQLTracingParser import GraphQLTracingParser
 
 
@@ -136,3 +137,4 @@ class GraphQLTracingParserTest(TestCase):
         self.assertEqual(resolverTree.getStartOffset(),  1172456)
         self.assertEqual(resolverTree.getDuration(), 215657)
         self.assertEqual(len(resolverTree.getChildren()), 2)
+        GraphQLExplainer().explain(json.dumps(self.tracing))
